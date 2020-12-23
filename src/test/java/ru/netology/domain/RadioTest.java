@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class RadioTest {
 
     @Test
-    void checkNextRadioStation() {
+    void checkNextRadioStationBoundaryValue() {
         Radio radio = new Radio();
         radio.setCurrentRadioStation(9);
         radio.nextRadioStation();
@@ -15,7 +15,23 @@ class RadioTest {
     }
 
     @Test
+    void checkNextRadioStation() {
+        Radio radio = new Radio();
+        radio.setCurrentRadioStation(6);
+        radio.nextRadioStation();
+        assertEquals(7,radio.getCurrentRadioStation());
+    }
+
+    @Test
     void checkPrevRadioStation() {
+        Radio radio = new Radio();
+        radio.setCurrentRadioStation(6);
+        radio.prevRadioStation();
+        assertEquals(5, radio.getCurrentRadioStation());
+    }
+
+    @Test
+    void checkPrevRadioStationBoundaryValue() {
         Radio radio = new Radio();
         radio.setCurrentRadioStation(0);
         radio.prevRadioStation();
@@ -33,7 +49,7 @@ class RadioTest {
     @Test
     void checkIncreaseSoundVolume() {
         Radio radio = new Radio();
-        radio.setCurrentSoundVolume(10);
+        radio.setCurrentSoundVolume(9);
         radio.increaseSoundVolume();
         assertEquals(10, radio.getCurrentSoundVolume());
     }
